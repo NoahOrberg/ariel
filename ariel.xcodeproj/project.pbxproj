@@ -1,0 +1,602 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3CB723DF2204218800A823DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB723DE2204218800A823DC /* AppDelegate.swift */; };
+		3CB723E12204218800A823DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB723E02204218800A823DC /* ViewController.swift */; };
+		3CB723E42204218800A823DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB723E22204218800A823DC /* Main.storyboard */; };
+		3CB723E72204218800A823DC /* ariel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3CB723E52204218800A823DC /* ariel.xcdatamodeld */; };
+		3CB723E92204218900A823DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CB723E82204218900A823DC /* Assets.xcassets */; };
+		3CB723EC2204218900A823DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CB723EA2204218900A823DC /* LaunchScreen.storyboard */; };
+		3CB723F72204218900A823DC /* arielTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB723F62204218900A823DC /* arielTests.swift */; };
+		3CB724022204218900A823DC /* arielUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB724012204218900A823DC /* arielUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CB723F32204218900A823DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CB723D32204218800A823DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CB723DA2204218800A823DC;
+			remoteInfo = ariel;
+		};
+		3CB723FE2204218900A823DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CB723D32204218800A823DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CB723DA2204218800A823DC;
+			remoteInfo = ariel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3CB723DB2204218800A823DC /* ariel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ariel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB723DE2204218800A823DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3CB723E02204218800A823DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CB723E32204218800A823DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3CB723E62204218800A823DC /* ariel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ariel.xcdatamodel; sourceTree = "<group>"; };
+		3CB723E82204218900A823DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3CB723EB2204218900A823DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3CB723ED2204218900A823DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CB723F22204218900A823DC /* arielTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arielTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB723F62204218900A823DC /* arielTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arielTests.swift; sourceTree = "<group>"; };
+		3CB723F82204218900A823DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CB723FD2204218900A823DC /* arielUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = arielUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CB724012204218900A823DC /* arielUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arielUITests.swift; sourceTree = "<group>"; };
+		3CB724032204218900A823DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CB723D82204218800A823DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723EF2204218900A823DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723FA2204218900A823DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3CB723D22204218800A823DC = {
+			isa = PBXGroup;
+			children = (
+				3CB723DD2204218800A823DC /* ariel */,
+				3CB723F52204218900A823DC /* arielTests */,
+				3CB724002204218900A823DC /* arielUITests */,
+				3CB723DC2204218800A823DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CB723DC2204218800A823DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CB723DB2204218800A823DC /* ariel.app */,
+				3CB723F22204218900A823DC /* arielTests.xctest */,
+				3CB723FD2204218900A823DC /* arielUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CB723DD2204218800A823DC /* ariel */ = {
+			isa = PBXGroup;
+			children = (
+				3CB723DE2204218800A823DC /* AppDelegate.swift */,
+				3CB723E02204218800A823DC /* ViewController.swift */,
+				3CB723E22204218800A823DC /* Main.storyboard */,
+				3CB723E82204218900A823DC /* Assets.xcassets */,
+				3CB723EA2204218900A823DC /* LaunchScreen.storyboard */,
+				3CB723ED2204218900A823DC /* Info.plist */,
+				3CB723E52204218800A823DC /* ariel.xcdatamodeld */,
+			);
+			path = ariel;
+			sourceTree = "<group>";
+		};
+		3CB723F52204218900A823DC /* arielTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CB723F62204218900A823DC /* arielTests.swift */,
+				3CB723F82204218900A823DC /* Info.plist */,
+			);
+			path = arielTests;
+			sourceTree = "<group>";
+		};
+		3CB724002204218900A823DC /* arielUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3CB724012204218900A823DC /* arielUITests.swift */,
+				3CB724032204218900A823DC /* Info.plist */,
+			);
+			path = arielUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CB723DA2204218800A823DC /* ariel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB724062204218900A823DC /* Build configuration list for PBXNativeTarget "ariel" */;
+			buildPhases = (
+				3CB723D72204218800A823DC /* Sources */,
+				3CB723D82204218800A823DC /* Frameworks */,
+				3CB723D92204218800A823DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ariel;
+			productName = ariel;
+			productReference = 3CB723DB2204218800A823DC /* ariel.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3CB723F12204218900A823DC /* arielTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB724092204218900A823DC /* Build configuration list for PBXNativeTarget "arielTests" */;
+			buildPhases = (
+				3CB723EE2204218900A823DC /* Sources */,
+				3CB723EF2204218900A823DC /* Frameworks */,
+				3CB723F02204218900A823DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CB723F42204218900A823DC /* PBXTargetDependency */,
+			);
+			name = arielTests;
+			productName = arielTests;
+			productReference = 3CB723F22204218900A823DC /* arielTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CB723FC2204218900A823DC /* arielUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CB7240C2204218900A823DC /* Build configuration list for PBXNativeTarget "arielUITests" */;
+			buildPhases = (
+				3CB723F92204218900A823DC /* Sources */,
+				3CB723FA2204218900A823DC /* Frameworks */,
+				3CB723FB2204218900A823DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CB723FF2204218900A823DC /* PBXTargetDependency */,
+			);
+			name = arielUITests;
+			productName = arielUITests;
+			productReference = 3CB723FD2204218900A823DC /* arielUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CB723D32204218800A823DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = NoahOrberg;
+				TargetAttributes = {
+					3CB723DA2204218800A823DC = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					3CB723F12204218900A823DC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3CB723DA2204218800A823DC;
+					};
+					3CB723FC2204218900A823DC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 3CB723DA2204218800A823DC;
+					};
+				};
+			};
+			buildConfigurationList = 3CB723D62204218800A823DC /* Build configuration list for PBXProject "ariel" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3CB723D22204218800A823DC;
+			productRefGroup = 3CB723DC2204218800A823DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CB723DA2204218800A823DC /* ariel */,
+				3CB723F12204218900A823DC /* arielTests */,
+				3CB723FC2204218900A823DC /* arielUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CB723D92204218800A823DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB723EC2204218900A823DC /* LaunchScreen.storyboard in Resources */,
+				3CB723E92204218900A823DC /* Assets.xcassets in Resources */,
+				3CB723E42204218800A823DC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723F02204218900A823DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723FB2204218900A823DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CB723D72204218800A823DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB723E12204218800A823DC /* ViewController.swift in Sources */,
+				3CB723E72204218800A823DC /* ariel.xcdatamodeld in Sources */,
+				3CB723DF2204218800A823DC /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723EE2204218900A823DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB723F72204218900A823DC /* arielTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CB723F92204218900A823DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CB724022204218900A823DC /* arielUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CB723F42204218900A823DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CB723DA2204218800A823DC /* ariel */;
+			targetProxy = 3CB723F32204218900A823DC /* PBXContainerItemProxy */;
+		};
+		3CB723FF2204218900A823DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CB723DA2204218800A823DC /* ariel */;
+			targetProxy = 3CB723FE2204218900A823DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3CB723E22204218800A823DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CB723E32204218800A823DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3CB723EA2204218900A823DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CB723EB2204218900A823DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CB724042204218900A823DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3CB724052204218900A823DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CB724072204218900A823DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ariel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.ariel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3CB724082204218900A823DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ariel/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.ariel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3CB7240A2204218900A823DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = arielTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.arielTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ariel.app/ariel";
+			};
+			name = Debug;
+		};
+		3CB7240B2204218900A823DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = arielTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.arielTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ariel.app/ariel";
+			};
+			name = Release;
+		};
+		3CB7240D2204218900A823DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = arielUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.arielUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ariel;
+			};
+			name = Debug;
+		};
+		3CB7240E2204218900A823DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = arielUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = noah.arielUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ariel;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CB723D62204218800A823DC /* Build configuration list for PBXProject "ariel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB724042204218900A823DC /* Debug */,
+				3CB724052204218900A823DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CB724062204218900A823DC /* Build configuration list for PBXNativeTarget "ariel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB724072204218900A823DC /* Debug */,
+				3CB724082204218900A823DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CB724092204218900A823DC /* Build configuration list for PBXNativeTarget "arielTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB7240A2204218900A823DC /* Debug */,
+				3CB7240B2204218900A823DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CB7240C2204218900A823DC /* Build configuration list for PBXNativeTarget "arielUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CB7240D2204218900A823DC /* Debug */,
+				3CB7240E2204218900A823DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3CB723E52204218800A823DC /* ariel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3CB723E62204218800A823DC /* ariel.xcdatamodel */,
+			);
+			currentVersion = 3CB723E62204218800A823DC /* ariel.xcdatamodel */;
+			path = ariel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3CB723D32204218800A823DC /* Project object */;
+}
