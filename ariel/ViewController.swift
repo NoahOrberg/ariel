@@ -106,6 +106,9 @@ class ViewController: UIViewController {
         }
         
         cnt+=1
+        if (cnt == NSIntegerMax) { // NOTE: avoid overflow
+            cnt = 0
+        }
     }
     
     @objc func movingUpdate() {
