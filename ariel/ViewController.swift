@@ -46,9 +46,12 @@ class ViewController: UIViewController {
     
     var fukidashi: UIImageView!
     var fukidashi01: UIImage?
-    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 30, width: 80, height: 17))
+    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
     let gladComment: String = "ふええ..."
-    let respComments: Array<String> = ["暇だな〜", "眠いよ", "あびゃー"]
+    let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
+    var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
+    let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
+    let respCommentFreqRange: ClosedRange<NSInteger> = 1...15 // NOTE: freq for show comment when respiration. this value should be 1...X
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,8 +148,23 @@ class ViewController: UIViewController {
             }
         } else {
             fairy?.image = fairyRespiration[cnt%self.fairyRespiration.count]
-            if (!fukidashi.isHidden) {
+            if (!fukidashi.isHidden && respCommentsCnt == -1) {
                 fukidashi.isHidden = true;
+            }
+            if (Int.random(in: respCommentFreqRange) == 1 && respCommentsCnt == -1) {
+                respCommentsCnt = 0 // NOTE: show comment when respiration, start
+            }
+        }
+        if (respCommentsCnt >= 0) {
+            fukidashi.isHidden = false;
+            if (respCommentsCnt == 0) {
+                commentWithFukidashi.text = respComments[Int.random(in: 0...respComments.count-1)] // NOTE: show message is random
+            }
+            respCommentsCnt+=1
+            if (respCommentsCnt >= respCommentsMaxTime) {
+                // NOTE: post process for showing resp comments
+                respCommentsCnt = -1
+                fukidashi.isHidden = true
             }
         }
         
@@ -158,7 +176,6 @@ class ViewController: UIViewController {
     
     @objc func movingUpdate() {
         if (isMoving != -1){
-            
             if (movingDirection < 2) { // NOTE: X or Y
                 crrFairyX += (movingDirection % 2 == 0) ? ACC : ACC * -1 // NOTE: right or left
             } else {
