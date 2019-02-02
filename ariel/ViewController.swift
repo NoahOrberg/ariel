@@ -46,6 +46,9 @@ class ViewController: UIViewController {
     
     var fukidashi: UIImageView!
     var fukidashi01: UIImage?
+    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 30, width: 80, height: 17))
+    let gladComment: String = "ふええ..."
+    let respComments: Array<String> = ["暇だな〜", "眠いよ", "あびゃー"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,8 +109,6 @@ class ViewController: UIViewController {
         fukidashi.isHidden = true;
         
         // NOTE: fukidashi comment
-        let commentWithFukidashi = UILabel(frame: CGRect(x: 10, y: 30, width: 80, height: 17))
-        commentWithFukidashi.text = "ふええ..."
         commentWithFukidashi.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         commentWithFukidashi.textAlignment = NSTextAlignment.center
         fukidashi.addSubview(commentWithFukidashi)
@@ -137,13 +138,13 @@ class ViewController: UIViewController {
     @objc func respirationUpdate() {
         fairy.isUserInteractionEnabled = !(gladCnt >= 0) // NOTE: avoid tap event while glad motion
         if (gladCnt >= 0) {
-            fairy.image = fairyGlad[gladCnt]
+            fairy?.image = fairyGlad[gladCnt]
             gladCnt+=1
             if (gladCnt == fairyGlad.count){
                 gladCnt = -1 // NOTE: end glad motion
             }
         } else {
-            fairy.image = fairyRespiration[cnt%self.fairyRespiration.count]
+            fairy?.image = fairyRespiration[cnt%self.fairyRespiration.count]
             if (!fukidashi.isHidden) {
                 fukidashi.isHidden = true;
             }
@@ -202,6 +203,7 @@ class ViewController: UIViewController {
 
     @objc func glad(_ sender:UITapGestureRecognizer){
         gladCnt = 0
+        commentWithFukidashi.text = gladComment
         fukidashi.isHidden = false;
     }
 
