@@ -37,9 +37,11 @@ class ViewController: UIViewController {
     var crrFairyY: NSInteger = 200 // gap < y < height - gap
     let ACC: NSInteger = 2
     var movingDirection: NSInteger = 0 // this % 4: 0=right, 1=left, 2=down, 3=up
+    var directionRange: ClosedRange<NSInteger> = 0 ... 3
     var movingTime: NSInteger = 25 // NOTE: it means, moving time. movingInterval * this
     var movingInterval: Double = 0.1
-    var movingSwitchInterval: Double = 4.0
+    var movingTimeRange: ClosedRange<NSInteger> = 5...30
+    var movingSwitchInterval: Double = 5.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,27 +134,24 @@ class ViewController: UIViewController {
     
     @objc func movingSwitchUpdate() {
         isMoving = 0
+        movingTime = Int.random(in: movingTimeRange) // NOTE: decide walking time by random
         repeat {
-            movingDirection = Int.random(in: 0 ... 3) // NOTE: switch derection
+            movingDirection = Int.random(in: directionRange) // NOTE: switch derection
         } while (checkDirection())
     }
     
     func checkDirection() -> Bool {
         if (movingDirection == 0) {
-            // right
-            return (crrFairyX + movingTime * ACC > scWidth - gap)
+            return (crrFairyX + movingTime * ACC > scWidth - gap) // right
         }
         if (movingDirection == 1) {
-            // left
-            return (crrFairyX + movingTime * ACC < gap)
+            return (crrFairyX - movingTime * ACC < gap) // left
         }
         if (movingDirection == 2) {
-            // down
-            return (crrFairyY + movingTime * ACC > scHeight - gap)
+            return (crrFairyY + movingTime * ACC > scHeight - gap) // down
         }
         if (movingDirection == 3) {
-            // up
-            return (crrFairyY + movingTime * ACC < gap)
+            return (crrFairyY - movingTime * ACC < gap) // up
         }
         return false // NOTE: unreachable statement
     }
