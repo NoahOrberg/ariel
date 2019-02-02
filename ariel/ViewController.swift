@@ -36,8 +36,8 @@ class ViewController: UIViewController {
     var crrFairyX: NSInteger = 200 // gap < x < height - gap
     var crrFairyY: NSInteger = 200 // gap < y < height - gap
     let ACC: NSInteger = 2
-    var movingDirection: Bool = false // false is -ACC, true is ACC
-    var movingTime: NSInteger = 30 // NOTE: it means, moving time. movingInterval * this
+    var movingDirection: NSInteger = 0 // this % 4: 0=right, 1=left, 2=down, 3=up
+    var movingTime: NSInteger = 25 // NOTE: it means, moving time. movingInterval * this
     var movingInterval: Double = 0.1
     var movingSwitchInterval: Double = 4.0
     
@@ -113,7 +113,13 @@ class ViewController: UIViewController {
     
     @objc func movingUpdate() {
         if (isMoving != -1){
-            crrFairyX += movingDirection ? ACC : ACC * -1
+            
+            if (movingDirection < 2) { // NOTE: X or Y
+                crrFairyX += (movingDirection % 2 == 0) ? ACC : ACC * -1 // NOTE: right or left
+            } else {
+                crrFairyY += (movingDirection % 2 == 0) ? ACC : ACC * -1 // NOTE: down or up
+            }
+            
             fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
         }
         if (isMoving == movingTime || isMoving == -1) {
@@ -126,7 +132,29 @@ class ViewController: UIViewController {
     
     @objc func movingSwitchUpdate() {
         isMoving = 0
-        movingDirection = !movingDirection // NOTE: switch derection
+        repeat {
+            movingDirection = Int.random(in: 0 ... 3) // NOTE: switch derection
+        } while (checkDirection())
+    }
+    
+    func checkDirection() -> Bool {
+        if (movingDirection == 0) {
+            // right
+            return (crrFairyX + movingTime * ACC > scWidth - gap)
+        }
+        if (movingDirection == 1) {
+            // left
+            return (crrFairyX + movingTime * ACC < gap)
+        }
+        if (movingDirection == 2) {
+            // down
+            return (crrFairyY + movingTime * ACC > scHeight - gap)
+        }
+        if (movingDirection == 3) {
+            // up
+            return (crrFairyY + movingTime * ACC < gap)
+        }
+        return false // NOTE: unreachable statement
     }
 
     @objc func glad(_ sender:UITapGestureRecognizer){
