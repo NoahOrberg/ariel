@@ -21,14 +21,15 @@ class ViewController: UIViewController {
     var gFairy01: UIImage? // glad
     var gFairy02: UIImage? // glad
     var fairyGlad:Array<UIImage?> = []
-    var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start gald motion.
+    var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
+    var tapGlad: UITapGestureRecognizer = UITapGestureRecognizer()
     
     var scWidth: NSInteger = 0
     var scHeight: NSInteger = 0
     
     var accWidth: NSInteger = 1
     var accHeight: NSInteger = 1
-    var gap: NSInteger = 50
+    var gap: NSInteger = 100
     var movingTimer: Timer?
     var movingSwitchTimer: Timer?
     var isMoving: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start moving.
@@ -43,27 +44,44 @@ class ViewController: UIViewController {
     var movingTimeRange: ClosedRange<NSInteger> = 5...30
     var movingSwitchInterval: Double = 5.0
     
+    var fukidashi: UIImageView!
+    var fukidashi01: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // NOTE: to Cheat BG color
+        // NOTE: to Cheat BG color (fairy bg is black... not transparent)
         view.backgroundColor = UIColor.black
         
-        // NOTE: check window size
+        // NOTE: determine window size
+        setupWindowSize()
+        
+        // NOTE: setup to show fairy
+        setupFairy()
+        
+        // NOTE: setup fukidashi
+        setupFukidashi()
+        
+        // NOTE: respiration fairy timer
+        respiration()
+        
+        // NOTE: moving timer
+        moving()
+    }
+    
+    func setupWindowSize() {
         scWidth = NSInteger( UIScreen.main.bounds.size.width)
         scHeight = NSInteger( UIScreen.main.bounds.size.height)
-        NSLog("%d x %d", scHeight, scWidth)
-        
-        // enable to handle tap event
-        fairy.isUserInteractionEnabled = true
-        fairy.contentMode = UIView.ContentMode.center
-        crrFairyX = scWidth / 2
-        crrFairyY = scHeight / 2
-        
-        let tapGlad:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.glad(_:)))
+        NSLog("window size: %d x %d", scHeight, scWidth)
+    }
+    
+    func setupGladTapGesture() {
+        tapGlad = UITapGestureRecognizer(target: self, action: #selector(ViewController.glad(_:)))
         fairy.addGestureRecognizer(tapGlad)
-        
+    }
+    
+    func setupFairy() {
         rFairy01 = UIImage(named: "fairy01.png")
         rFairy02 = UIImage(named: "fairy02.png")
         rFairy03 = UIImage(named: "fairy03.png")
@@ -71,16 +89,36 @@ class ViewController: UIViewController {
         gFairy02 = UIImage(named: "gFairy02.png")
         fairyRespiration = [rFairy01, rFairy02, rFairy03, rFairy02]
         fairyGlad = [gFairy01, gFairy02]
-        
-        fairy.image = rFairy01
+        fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
+        fairy?.contentMode = UIView.ContentMode.center
+        fairy?.image = rFairy01
+        crrFairyX = scWidth / 2
+        crrFairyY = scHeight / 2
         fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
+        setupGladTapGesture()
+    }
+    
+    func setupFukidashi() {
+        fukidashi01 = UIImage(named: "fukidashi.png")
+        fukidashi = UIImageView(image: fukidashi01)
+        fukidashi.center = CGPoint(x:fukidashiX(), y:fukidashiY())
+        self.view.addSubview(fukidashi)
+        fukidashi.isHidden = true;
         
-        // NOTE: respiration fairy
-        respiration()
-        
-        // NOTE: moving
-        moving()
-        movingSwitch()
+        // NOTE: fukidashi comment
+        let commentWithFukidashi = UILabel(frame: CGRect(x: 10, y: 30, width: 80, height: 17))
+        commentWithFukidashi.text = "ふええ..."
+        commentWithFukidashi.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+        commentWithFukidashi.textAlignment = NSTextAlignment.center
+        fukidashi.addSubview(commentWithFukidashi)
+    }
+    
+    func fukidashiX() -> NSInteger{
+        return crrFairyX - 30
+    }
+    
+    func fukidashiY() -> NSInteger{
+        return crrFairyY - 70
     }
     
     func respiration() {
@@ -89,6 +127,7 @@ class ViewController: UIViewController {
     
     func moving() {
         movingTimer = Timer.scheduledTimer(timeInterval: movingInterval, target: self, selector: #selector(ViewController.movingUpdate), userInfo: nil, repeats: true)
+        movingSwitch() // NOTE: to switch moving
     }
     
     func movingSwitch() {
@@ -105,6 +144,9 @@ class ViewController: UIViewController {
             }
         } else {
             fairy.image = fairyRespiration[cnt%self.fairyRespiration.count]
+            if (!fukidashi.isHidden) {
+                fukidashi.isHidden = true;
+            }
         }
         
         cnt+=1
@@ -123,6 +165,8 @@ class ViewController: UIViewController {
             }
             
             fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
+            // NOTE: with fukidashi
+            fukidashi.center = CGPoint(x:fukidashiX(), y:fukidashiY())
         }
         if (isMoving == movingTime || isMoving == -1) {
             isMoving = -1
@@ -158,6 +202,7 @@ class ViewController: UIViewController {
 
     @objc func glad(_ sender:UITapGestureRecognizer){
         gladCnt = 0
+        fukidashi.isHidden = false;
     }
 
 }
