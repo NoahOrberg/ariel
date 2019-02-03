@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     var fukidashi: UIImageView!
     var fukidashi01: UIImage?
     var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
-    let gladComment: String = "ふええ..."
+    let gladComment: Array<Array<String>> = [["ふええ..."], ["シャボン玉〜"]]
     let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
     var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
     let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
@@ -121,6 +121,7 @@ class ViewController: UIViewController {
         // NOTE: fukidashi comment
         commentWithFukidashi.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         commentWithFukidashi.textAlignment = NSTextAlignment.center
+        commentWithFukidashi.adjustsFontSizeToFitWidth = true
         fukidashi.addSubview(commentWithFukidashi)
     }
     
@@ -228,7 +229,7 @@ class ViewController: UIViewController {
     @objc func glad(_ sender:UITapGestureRecognizer){
         gladCnt = 0
         gladMotionCnt = Int.random(in: 0...(fairyGlad.count-1))
-        commentWithFukidashi.text = gladComment
+        commentWithFukidashi.text = gladComment[gladMotionCnt][Int.random(in: 0...(gladComment[gladMotionCnt].count)-1)]
         fukidashi.isHidden = false
     }
 
