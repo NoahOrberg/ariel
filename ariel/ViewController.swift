@@ -109,7 +109,7 @@ class ViewController: UIViewController {
         fukidashi = UIImageView(image: fukidashi01)
         fukidashi.center = CGPoint(x:fukidashiX(), y:fukidashiY())
         self.view.addSubview(fukidashi)
-        fukidashi.isHidden = true;
+        fukidashi.isHidden = true
         
         // NOTE: fukidashi comment
         commentWithFukidashi.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
@@ -149,14 +149,14 @@ class ViewController: UIViewController {
         } else {
             fairy?.image = fairyRespiration[cnt%self.fairyRespiration.count]
             if (!fukidashi.isHidden && respCommentsCnt == -1) {
-                fukidashi.isHidden = true;
+                fukidashi.isHidden = true
             }
             if (Int.random(in: respCommentFreqRange) == 1 && respCommentsCnt == -1) {
                 respCommentsCnt = 0 // NOTE: show comment when respiration, start
             }
         }
         if (respCommentsCnt >= 0) {
-            fukidashi.isHidden = false;
+            fukidashi.isHidden = false
             if (respCommentsCnt == 0) {
                 commentWithFukidashi.text = respComments[Int.random(in: 0...respComments.count-1)] // NOTE: show message is random
             }
@@ -221,7 +221,7 @@ class ViewController: UIViewController {
     @objc func glad(_ sender:UITapGestureRecognizer){
         gladCnt = 0
         commentWithFukidashi.text = gladComment
-        fukidashi.isHidden = false;
+        fukidashi.isHidden = false
     }
 
 }
