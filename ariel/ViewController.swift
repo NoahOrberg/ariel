@@ -20,7 +20,11 @@ class ViewController: UIViewController {
     
     var gFairy01: UIImage? // glad
     var gFairy02: UIImage? // glad
-    var fairyGlad:Array<UIImage?> = []
+    var sFairy01: UIImage? // glad
+    var sFairy02: UIImage? // glad
+    var sFairy03: UIImage? // glad
+    var fairyGlad: Array<Array<UIImage?>> = []
+    var gladMotionCnt: NSInteger = 0
     var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
     var tapGlad: UITapGestureRecognizer = UITapGestureRecognizer()
     
@@ -93,8 +97,11 @@ class ViewController: UIViewController {
         rFairy03 = UIImage(named: "fairy03.png")
         gFairy01 = UIImage(named: "gFairy01.png")
         gFairy02 = UIImage(named: "gFairy02.png")
+        sFairy01 = UIImage(named: "sFairy01.png")
+        sFairy02 = UIImage(named: "sFairy02.png")
+        sFairy03 = UIImage(named: "sFairy03.png")
         fairyRespiration = [rFairy01, rFairy02, rFairy03, rFairy02]
-        fairyGlad = [gFairy01, gFairy02]
+        fairyGlad = [[gFairy01, gFairy02], [sFairy01, sFairy02, sFairy03]]
         fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         fairy?.contentMode = UIView.ContentMode.center
         fairy?.image = rFairy01
@@ -141,9 +148,9 @@ class ViewController: UIViewController {
     @objc func respirationUpdate() {
         fairy.isUserInteractionEnabled = !(gladCnt >= 0) // NOTE: avoid tap event while glad motion
         if (gladCnt >= 0) {
-            fairy?.image = fairyGlad[gladCnt]
+            fairy?.image = fairyGlad[gladMotionCnt][gladCnt]
             gladCnt+=1
-            if (gladCnt == fairyGlad.count){
+            if (gladCnt == fairyGlad[gladMotionCnt].count){
                 gladCnt = -1 // NOTE: end glad motion
             }
         } else {
@@ -220,6 +227,7 @@ class ViewController: UIViewController {
 
     @objc func glad(_ sender:UITapGestureRecognizer){
         gladCnt = 0
+        gladMotionCnt = Int.random(in: 0...(fairyGlad.count-1))
         commentWithFukidashi.text = gladComment
         fukidashi.isHidden = false
     }
