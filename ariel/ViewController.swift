@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     var fukidashi: UIImageView!
     var fukidashi01: UIImage?
     var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
-    let gladComment: Array<Array<String>> = [["ふええ..."], ["シャボン玉〜"]]
+    let gladComment: Array<Array<String>> = [["ふええ..."], ["ふええ..."], ["シャボン玉〜"]]
     let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
     var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
     let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
@@ -83,7 +83,9 @@ class ViewController: UIViewController {
     
     func setupFairy() {
         fairyRespiration = [UIImage(named: "fairy01.png"), UIImage(named: "fairy02.png"), UIImage(named: "fairy03.png"), UIImage(named: "fairy02.png")]
-        fairyGlad = [[UIImage(named: "gFairy01.png"), UIImage(named: "gFairy02.png")], [UIImage(named: "sFairy01.png"), UIImage(named: "sFairy02.png"), UIImage(named: "sFairy03.png")]]
+        fairyGlad = [[UIImage(named: "gFairy01.png"), UIImage(named: "gFairy02.png")],
+                     [UIImage(named: "gFairy01.png"), UIImage(named: "gFairy01.5.png"), UIImage(named: "gFairy02.png")],
+                     [UIImage(named: "sFairy01.png"), UIImage(named: "sFairy02.png"), UIImage(named: "sFairy03.png")]]
         fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         fairy?.contentMode = UIView.ContentMode.center
         fairy?.image = fairyRespiration[0] // NOTE: initial pic
