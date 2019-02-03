@@ -11,18 +11,10 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var fairy: UIImageView!
     var cnt: NSInteger = 0
-    var rFairy01: UIImage? // respiration
-    var rFairy02: UIImage? // respiration
-    var rFairy03: UIImage? // respiration
     var fairyRespiration:Array<UIImage?> = []
     var respirationTimer: Timer?
     var respirationInterval: Double = 0.5
     
-    var gFairy01: UIImage? // glad
-    var gFairy02: UIImage? // glad
-    var sFairy01: UIImage? // glad
-    var sFairy02: UIImage? // glad
-    var sFairy03: UIImage? // glad
     var fairyGlad: Array<Array<UIImage?>> = []
     var gladMotionCnt: NSInteger = 0
     var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
@@ -90,19 +82,11 @@ class ViewController: UIViewController {
     }
     
     func setupFairy() {
-        rFairy01 = UIImage(named: "fairy01.png")
-        rFairy02 = UIImage(named: "fairy02.png")
-        rFairy03 = UIImage(named: "fairy03.png")
-        gFairy01 = UIImage(named: "gFairy01.png")
-        gFairy02 = UIImage(named: "gFairy02.png")
-        sFairy01 = UIImage(named: "sFairy01.png")
-        sFairy02 = UIImage(named: "sFairy02.png")
-        sFairy03 = UIImage(named: "sFairy03.png")
-        fairyRespiration = [rFairy01, rFairy02, rFairy03, rFairy02]
-        fairyGlad = [[gFairy01, gFairy02], [sFairy01, sFairy02, sFairy03]]
+        fairyRespiration = [UIImage(named: "fairy01.png"), UIImage(named: "fairy02.png"), UIImage(named: "fairy03.png"), UIImage(named: "fairy02.png")]
+        fairyGlad = [[UIImage(named: "gFairy01.png"), UIImage(named: "gFairy02.png")], [UIImage(named: "sFairy01.png"), UIImage(named: "sFairy02.png"), UIImage(named: "sFairy03.png")]]
         fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         fairy?.contentMode = UIView.ContentMode.center
-        fairy?.image = rFairy01
+        fairy?.image = fairyRespiration[0] // NOTE: initial pic
         crrFairyX = scWidth / 2
         crrFairyY = scHeight / 2
         fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
