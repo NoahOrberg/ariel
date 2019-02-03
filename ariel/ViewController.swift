@@ -30,9 +30,7 @@ class ViewController: UIViewController {
     
     var scWidth: NSInteger = 0
     var scHeight: NSInteger = 0
-    
-    var accWidth: NSInteger = 1
-    var accHeight: NSInteger = 1
+
     var gap: NSInteger = 100
     var movingTimer: Timer?
     var movingSwitchTimer: Timer?
