@@ -9,43 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var fairy: UIImageView!
-    var cnt: NSInteger = 0
-    var fairyRespiration:Array<UIImage?> = []
+    var ariel: ArielViewModel = ArielViewModel()
+    var fukidashi: FukidashiViewModel = FukidashiViewModel()
+    
+    var movingTimer: Timer?
+    var movingSwitchTimer: Timer?
+    
     var respirationTimer: Timer?
     var respirationInterval: Double = 0.5
     
-    var fairyGlad: Array<Array<UIImage?>> = []
-    var gladMotionCnt: NSInteger = 0
-    var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
-    var tapGlad: UITapGestureRecognizer = UITapGestureRecognizer()
-    
-    var scWidth: NSInteger = 0
-    var scHeight: NSInteger = 0
-
-    var gap: NSInteger = 100
-    var movingTimer: Timer?
-    var movingSwitchTimer: Timer?
-    var isMoving: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start moving.
-    
-    var crrFairyX: NSInteger = 200 // gap < x < height - gap
-    var crrFairyY: NSInteger = 200 // gap < y < height - gap
-    let ACC: NSInteger = 2
-    var movingDirection: NSInteger = 0 // this % 4: 0=right, 1=left, 2=down, 3=up
-    var directionRange: ClosedRange<NSInteger> = 0 ... 3
-    var movingTime: NSInteger = 25 // NOTE: it means, moving time. movingInterval * this
     var movingInterval: Double = 0.1
-    var movingTimeRange: ClosedRange<NSInteger> = 5...30
     var movingSwitchInterval: Double = 5.0
     
-    var fukidashi: UIImageView!
-    var fukidashi01: UIImage?
-    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
-    let gladComment: Array<Array<String>> = [["ふええ..."], ["ふええ..."], ["シャボン玉〜"]]
-    let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
-    var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
-    let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
-    let respCommentFreqRange: ClosedRange<NSInteger> = 1...15 // NOTE: freq for show comment when respiration. this value should be 1...X
+    var tapGlad: UITapGestureRecognizer = UITapGestureRecognizer()
+    
+    override func loadView() {
+        self.view = ArielView(ariel: ariel, fukidashi: fukidashi)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,69 +34,30 @@ class ViewController: UIViewController {
         // NOTE: to Cheat BG color (fairy bg is black... not transparent)
         view.backgroundColor = UIColor.black
         
-        // NOTE: determine window size
-        setupWindowSize()
-        
-        // NOTE: setup to show fairy
-        setupFairy()
-        
-        // NOTE: setup fukidashi
-        setupFukidashi()
-        
-        // NOTE: respiration fairy timer
         respiration()
-        
-        // NOTE: moving timer
         moving()
-    }
-    
-    func setupWindowSize() {
-        scWidth = NSInteger( UIScreen.main.bounds.size.width)
-        scHeight = NSInteger( UIScreen.main.bounds.size.height)
-        NSLog("window size: %d x %d", scHeight, scWidth)
+        movingSwitch()
+        setupGladTapGesture()
+        NSLog("finished viewDidLoad")
     }
     
     func setupGladTapGesture() {
-        tapGlad = UITapGestureRecognizer(target: self, action: #selector(ViewController.glad(_:)))
-        fairy.addGestureRecognizer(tapGlad)
+        let arielView = self.view as! ArielView
+        tapGlad = UITapGestureRecognizer(target: self, action: #selector(ViewController.glad))
+        arielView.arielView.addGestureRecognizer(tapGlad)
+        let superviews = chainIterator(arielView.arielView) { $0?.superview }
+        superviews.forEach { print($0.isUserInteractionEnabled) }
+        NSLog("setuped GladTapGesture")
     }
     
-    func setupFairy() {
-        fairyRespiration = [UIImage(named: "fairy01.png"), UIImage(named: "fairy02.png"), UIImage(named: "fairy03.png"), UIImage(named: "fairy02.png")]
-        fairyGlad = [[UIImage(named: "gFairy01.png"), UIImage(named: "gFairy02.png")],
-                     [UIImage(named: "gFairy01.png"), UIImage(named: "gFairy01.5.png"), UIImage(named: "gFairy02.png")],
-                     [UIImage(named: "sFairy01.png"), UIImage(named: "sFairy02.png"), UIImage(named: "sFairy03.png")]]
-        fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
-        fairy?.contentMode = UIView.ContentMode.center
-        fairy?.image = fairyRespiration[0] // NOTE: initial pic
-        crrFairyX = scWidth / 2
-        crrFairyY = scHeight / 2
-        fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
-        setupGladTapGesture()
+    func chainIterator<T>(_ value: T, _ f: @escaping (T?) -> (T?)) -> AnyIterator<T> {
+        var next: T? = value
+        return AnyIterator {
+            defer { next = f(next) }
+            return next
+        }
     }
-    
-    func setupFukidashi() {
-        fukidashi01 = UIImage(named: "fukidashi.png")
-        fukidashi = UIImageView(image: fukidashi01)
-        fukidashi.center = CGPoint(x:fukidashiX(), y:fukidashiY())
-        self.view.addSubview(fukidashi)
-        fukidashi.isHidden = true
-        
-        // NOTE: fukidashi comment
-        commentWithFukidashi.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        commentWithFukidashi.textAlignment = NSTextAlignment.center
-        commentWithFukidashi.adjustsFontSizeToFitWidth = true
-        fukidashi.addSubview(commentWithFukidashi)
-    }
-    
-    func fukidashiX() -> NSInteger{
-        return crrFairyX - 30
-    }
-    
-    func fukidashiY() -> NSInteger{
-        return crrFairyY - 70
-    }
-    
+
     func respiration() {
         respirationTimer = Timer.scheduledTimer(timeInterval: respirationInterval, target: self, selector: #selector(ViewController.respirationUpdate), userInfo: nil, repeats: true)
     }
@@ -125,97 +66,101 @@ class ViewController: UIViewController {
         movingTimer = Timer.scheduledTimer(timeInterval: movingInterval, target: self, selector: #selector(ViewController.movingUpdate), userInfo: nil, repeats: true)
         movingSwitch() // NOTE: to switch moving
     }
-    
+
     func movingSwitch() {
         movingSwitchTimer = Timer.scheduledTimer(timeInterval: movingSwitchInterval, target: self, selector: #selector(ViewController.movingSwitchUpdate), userInfo: nil, repeats: true)
     }
-    
+
     @objc func respirationUpdate() {
-        fairy.isUserInteractionEnabled = !(gladCnt >= 0) // NOTE: avoid tap event while glad motion
-        if (gladCnt >= 0) {
-            fairy?.image = fairyGlad[gladMotionCnt][gladCnt]
-            gladCnt+=1
-            if (gladCnt == fairyGlad[gladMotionCnt].count){
-                gladCnt = -1 // NOTE: end glad motion
+        let arielView = self.view as! ArielView
+        arielView.arielView.isUserInteractionEnabled = !(ariel.gladCnt >= 0) // NOTE: avoid tap event while glad motion
+        if (ariel.gladCnt >= 0) {
+            arielView.arielView.image = ariel.gladImages[ariel.gladMotionCnt][ariel.gladCnt]
+            ariel.gladCnt+=1
+            if (ariel.gladCnt == ariel.gladImages[ariel.gladMotionCnt].count){
+                ariel.gladCnt = -1 // NOTE: end glad motion
             }
         } else {
-            fairy?.image = fairyRespiration[cnt%self.fairyRespiration.count]
-            if (!fukidashi.isHidden && respCommentsCnt == -1) {
-                fukidashi.isHidden = true
+            arielView.arielView.image = ariel.respImages[ariel.cnt%ariel.respImages.count]
+            if (!arielView.fukidashiView.isHidden && ariel.respCommentsCnt == -1) {
+                arielView.fukidashiView.isHidden = true
             }
-            if (Int.random(in: respCommentFreqRange) == 1 && respCommentsCnt == -1) {
-                respCommentsCnt = 0 // NOTE: show comment when respiration, start
+            if (Int.random(in: ariel.respCommentFreqRange) == 1 && ariel.respCommentsCnt == -1) {
+                ariel.respCommentsCnt = 0 // NOTE: show comment when respiration, start
             }
         }
-        if (respCommentsCnt >= 0) {
-            fukidashi.isHidden = false
-            if (respCommentsCnt == 0) {
-                commentWithFukidashi.text = respComments[Int.random(in: 0...respComments.count-1)] // NOTE: show message is random
+        if (ariel.respCommentsCnt >= 0) {
+            arielView.fukidashiView.isHidden = false
+            if (ariel.respCommentsCnt == 0) {
+                fukidashi.commentWithFukidashiLabel.text = ariel.respComments[Int.random(in: 0...ariel.respComments.count-1)] // NOTE: show message is random
             }
-            respCommentsCnt+=1
-            if (respCommentsCnt >= respCommentsMaxTime) {
+            ariel.respCommentsCnt+=1
+            if (ariel.respCommentsCnt >= ariel.respCommentsMaxTime) {
                 // NOTE: post process for showing resp comments
-                respCommentsCnt = -1
-                fukidashi.isHidden = true
+                ariel.respCommentsCnt = -1
+                arielView.fukidashiView.isHidden = true
             }
         }
         
-        cnt+=1
-        if (cnt == NSIntegerMax) { // NOTE: avoid overflow
-            cnt = 0
+        ariel.cnt+=1
+        if (ariel.cnt == NSIntegerMax) { // NOTE: avoid overflow
+            ariel.cnt = 0
         }
     }
     
     @objc func movingUpdate() {
-        if (isMoving != -1){
-            if (movingDirection < 2) { // NOTE: X or Y
-                crrFairyX += (movingDirection % 2 == 0) ? ACC : ACC * -1 // NOTE: right or left
+        let arielView = self.view as! ArielView
+        NSLog("arielView.arielView!.isUserInteractionEnabled: %d", arielView.arielView!.isUserInteractionEnabled)
+        if (ariel.isMoving != -1){
+            if (ariel.movingDirection < 2) { // NOTE: X or Y
+                ariel.x += (ariel.movingDirection % 2 == 0) ? ariel.ACC : ariel.ACC * -1 // NOTE: right or left
             } else {
-                crrFairyY += (movingDirection % 2 == 0) ? ACC : ACC * -1 // NOTE: down or up
+                ariel.y += (ariel.movingDirection % 2 == 0) ? ariel.ACC : ariel.ACC * -1 // NOTE: down or up
             }
-            
-            fairy?.layer.position = CGPoint(x: crrFairyX, y: crrFairyY)
+            arielView.arielView.layer.position = CGPoint(x: ariel.x, y: ariel.y)
             // NOTE: with fukidashi
-            fukidashi.center = CGPoint(x:fukidashiX(), y:fukidashiY())
+            arielView.fukidashiView.center = CGPoint(x:fukidashi.x(arielX: ariel.x), y:fukidashi.y(arielY: ariel.y))
         }
-        if (isMoving == movingTime || isMoving == -1) {
-            isMoving = -1
+        if (ariel.isMoving == ariel.movingTime || ariel.isMoving == -1) {
+            ariel.isMoving = -1
         } else {
-            isMoving+=1
+            ariel.isMoving+=1
         }
         // NSLog("%d", isMoving)
     }
     
     @objc func movingSwitchUpdate() {
-        isMoving = 0
-        movingTime = Int.random(in: movingTimeRange) // NOTE: decide walking time by random
+        ariel.isMoving = 0
+        ariel.movingTime = Int.random(in: ariel.movingTimeRange) // NOTE: decide walking time by random
         repeat {
-            movingDirection = Int.random(in: directionRange) // NOTE: switch derection
+            ariel.movingDirection = Int.random(in: ariel.directionRange) // NOTE: switch derection
         } while (checkDirection())
     }
     
     func checkDirection() -> Bool {
-        if (movingDirection == 0) {
-            return (crrFairyX + movingTime * ACC > scWidth - gap) // right
+        if (ariel.movingDirection == 0) {
+            return (ariel.x + ariel.movingTime * ariel.ACC > ariel.scWidth - ariel.gap) // right
         }
-        if (movingDirection == 1) {
-            return (crrFairyX - movingTime * ACC < gap) // left
+        if (ariel.movingDirection == 1) {
+            return (ariel.x - ariel.movingTime * ariel.ACC < ariel.gap) // left
         }
-        if (movingDirection == 2) {
-            return (crrFairyY + movingTime * ACC > scHeight - gap) // down
+        if (ariel.movingDirection == 2) {
+            return (ariel.y + ariel.movingTime * ariel.ACC > ariel.scHeight - ariel.gap) // down
         }
-        if (movingDirection == 3) {
-            return (crrFairyY - movingTime * ACC < gap) // up
+        if (ariel.movingDirection == 3) {
+            return (ariel.y - ariel.movingTime * ariel.ACC < ariel.gap) // up
         }
         return false // NOTE: unreachable statement
     }
 
-    @objc func glad(_ sender:UITapGestureRecognizer){
-        gladCnt = 0
-        gladMotionCnt = Int.random(in: 0...(fairyGlad.count-1))
-        commentWithFukidashi.text = gladComment[gladMotionCnt][Int.random(in: 0...(gladComment[gladMotionCnt].count)-1)]
-        fukidashi.isHidden = false
+    @objc func glad(_ sender: UITapGestureRecognizer){
+        NSLog("invoked glad()")
+        ariel.gladCnt = 0
+        ariel.gladMotionCnt = Int.random(in: 0...(ariel.gladImages.count-1))
+        fukidashi.commentWithFukidashiLabel.text = ariel.gladComment[ariel.gladMotionCnt][Int.random(in: 0...(ariel.gladComment[ariel.gladMotionCnt].count)-1)]
+        
+        let arielView = self.view as! ArielView
+        arielView.fukidashiView.isHidden = false
     }
-
 }
 
