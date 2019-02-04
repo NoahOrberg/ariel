@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var scWidth: NSInteger = 0
     var scHeight: NSInteger = 0
 
-    var gap: NSInteger = 100
+    var gap: NSInteger = 200
     var movingTimer: Timer?
     var movingSwitchTimer: Timer?
     var isMoving: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start moving.
@@ -40,9 +40,9 @@ class ViewController: UIViewController {
     
     var fukidashi: UIImageView!
     var fukidashi01: UIImage?
-    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
-    let gladComment: Array<Array<String>> = [["ふええ..."], ["ふええ..."], ["シャボン玉〜"]]
-    let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
+    var commentWithFukidashi: UILabel = UILabel(frame: CGRect(x: 10, y: 25, width: 80, height: 17))
+    let gladComment: Array<Array<String>> = []
+    let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ明るい"]
     var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
     let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
     let respCommentFreqRange: ClosedRange<NSInteger> = 1...15 // NOTE: freq for show comment when respiration. this value should be 1...X
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // NOTE: to Cheat BG color (fairy bg is black... not transparent)
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
         
         // NOTE: determine window size
         setupWindowSize()
@@ -82,10 +82,8 @@ class ViewController: UIViewController {
     }
     
     func setupFairy() {
-        fairyRespiration = [UIImage(named: "fairy01.png"), UIImage(named: "fairy02.png"), UIImage(named: "fairy03.png"), UIImage(named: "fairy02.png")]
-        fairyGlad = [[UIImage(named: "gFairy01.png"), UIImage(named: "gFairy02.png")],
-                     [UIImage(named: "gFairy01.png"), UIImage(named: "gFairy01.5.png"), UIImage(named: "gFairy02.png")],
-                     [UIImage(named: "sFairy01.png"), UIImage(named: "sFairy02.png"), UIImage(named: "sFairy03.png")]]
+        fairyRespiration = [UIImage(named: "ariel01.png"), UIImage(named: "ariel02.png"), UIImage(named: "ariel03.png"), UIImage(named: "ariel04.png"), UIImage(named: "ariel03.png"), UIImage(named: "ariel02.png")]
+        fairyGlad = []
         fairy?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         fairy?.contentMode = UIView.ContentMode.center
         fairy?.image = fairyRespiration[0] // NOTE: initial pic
@@ -110,11 +108,11 @@ class ViewController: UIViewController {
     }
     
     func fukidashiX() -> NSInteger{
-        return crrFairyX - 30
+        return crrFairyX - 50
     }
     
     func fukidashiY() -> NSInteger{
-        return crrFairyY - 70
+        return crrFairyY - 130
     }
     
     func respiration() {
@@ -211,6 +209,9 @@ class ViewController: UIViewController {
     }
 
     @objc func glad(_ sender:UITapGestureRecognizer){
+        if (fairyGlad.count-1 < 0) { // NOTE: if glad motion is nothing, breaking this function
+            return
+        }
         gladCnt = 0
         gladMotionCnt = Int.random(in: 0...(fairyGlad.count-1))
         commentWithFukidashi.text = gladComment[gladMotionCnt][Int.random(in: 0...(gladComment[gladMotionCnt].count)-1)]
