@@ -110,7 +110,6 @@ class ViewController: UIViewController {
     
     @objc func movingUpdate() {
         let arielView = self.view as! ArielView
-        NSLog("arielView.arielView!.isUserInteractionEnabled: %d", arielView.arielView!.isUserInteractionEnabled)
         if (ariel.isMoving != -1){
             if (ariel.movingDirection < 2) { // NOTE: X or Y
                 ariel.x += (ariel.movingDirection % 2 == 0) ? ariel.ACC : ariel.ACC * -1 // NOTE: right or left

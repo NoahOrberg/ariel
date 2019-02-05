@@ -23,11 +23,11 @@ class ArielView: UIView {
     
     required init(ariel: ArielViewModel, fukidashi: FukidashiViewModel) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        arielView = UIImageView()
+        arielView = UIImageView(image: ariel.respImages[0])
         arielView?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         arielView?.contentMode = UIView.ContentMode.center
         arielView?.center = CGPoint(x:ariel.x, y:ariel.y)
-        arielView?.image = ariel.respImages[0] // NOTE: initial pic
+        arielView?.contentMode = UIView.ContentMode.scaleAspectFill
         
         fukidashiView = UIImageView(image: fukidashi.fukidashiImage)
         fukidashiView?.center = CGPoint(x:fukidashi.x(arielX: ariel.x), y:fukidashi.y(arielY: ariel.y))
