@@ -19,7 +19,7 @@ class FukidashiViewModel: NSObject {
         
         // NOTE: fukidashi comment
         commentWithFukidashiLabel.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
-        commentWithFukidashiLabel.textAlignment = NSTextAlignment.center
+        commentWithFukidashiLabel.textAlignment = .center
         commentWithFukidashiLabel.adjustsFontSizeToFitWidth = true
         
         NSLog("initialized FukidashiViewModel")

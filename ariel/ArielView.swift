@@ -27,7 +27,7 @@ class ArielView: UIView {
         arielView?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
         arielView?.contentMode = UIView.ContentMode.center
         arielView?.center = CGPoint(x:ariel.x, y:ariel.y)
-        arielView?.contentMode = UIView.ContentMode.scaleAspectFill
+        arielView?.contentMode = .scaleAspectFill
         
         fukidashiView = UIImageView(image: fukidashi.fukidashiImage)
         fukidashiView?.center = CGPoint(x:fukidashi.x(arielX: ariel.x), y:fukidashi.y(arielY: ariel.y))
