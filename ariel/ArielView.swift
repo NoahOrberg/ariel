@@ -47,7 +47,7 @@ class ArielView: UIView {
         NSLog("invoked .layoutSubview()")
 
         arielView?.isUserInteractionEnabled = true // NOTE: enable to handle tap event
-        arielView?.contentMode = UIView.ContentMode.center
+        arielView?.contentMode = .center
         arielView?.contentMode = .scaleAspectFill
         arielView?.center = CGPoint(x:ariel.x, y:ariel.y)
         setupGladTapGesture()
@@ -122,10 +122,10 @@ class ArielView: UIView {
         ariel.movingTime = Int.random(in: ariel.movingTimeRange) // NOTE: decide walking time by random
         repeat {
             ariel.movingDirection = Int.random(in: ariel.directionRange) // NOTE: switch derection
-        } while (checkDirection())
+        } while (checkDirection)
     }
 
-    func checkDirection() -> Bool {
+    var checkDirection: Bool {
         if (ariel.movingDirection == 0) {
             return (ariel.x + ariel.movingTime * ariel.ACC > ariel.scWidth - ariel.gap) // right
         }

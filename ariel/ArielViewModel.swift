@@ -10,36 +10,36 @@ import Foundation
 import UIKit
 
 class ArielViewModel: NSObject {
-    var cnt: NSInteger = 0
-    var movingTime: NSInteger = 25 // NOTE: it means, moving time. movingInterval * this
+    var cnt = 0
+    var movingTime = 25 // NOTE: it means, moving time. movingInterval * this
 
-    var respImages:Array<UIImage?> = []
+    var respImages: [UIImage?] = []
     
-    var gladImages: Array<Array<UIImage?>> = []
-    var gladMotionCnt: NSInteger = 0
-    var gladCnt: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
+    var gladImages: [[UIImage?]] = []
+    var gladMotionCnt = 0
+    var gladCnt = -1 // NOTE: it is not 0 coz if it's 0, start glad motion.
     
-    var scWidth: NSInteger = NSInteger( UIScreen.main.bounds.size.width)
-    var scHeight: NSInteger = NSInteger( UIScreen.main.bounds.size.height)
+    var scWidth = Int( UIScreen.main.bounds.size.width)
+    var scHeight = Int( UIScreen.main.bounds.size.height)
     
-    var gap: NSInteger = 100
-    var isMoving: NSInteger = -1 // NOTE: it is not 0 coz if it's 0, start moving.
+    var gap = 100
+    var isMoving = -1 // NOTE: it is not 0 coz if it's 0, start moving.
     
-    var x: NSInteger = 200 // gap < x < height - gap
-    var y: NSInteger = 200 // gap < y < height - gap
-    let ACC: NSInteger = 2
-    var movingDirection: NSInteger = 0 // this % 4: 0=right, 1=left, 2=down, 3=up
-    var directionRange: ClosedRange<NSInteger> = 0 ... 3
-    var movingTimeRange: ClosedRange<NSInteger> = 5...30
+    var x = 200 // gap < x < height - gap
+    var y = 200 // gap < y < height - gap
+    let ACC = 2
+    var movingDirection = 0 // this % 4: 0=right, 1=left, 2=down, 3=up
+    var directionRange = 0 ... 3
+    var movingTimeRange = 5...30
     
-    let gladComment: Array<Array<String>> = [["ふええ..."], ["ふええ..."], ["シャボン玉〜"]]
-    let respComments: Array<String> = ["暇だな〜", "眠いよ", "ここ暗い"]
-    var respCommentsCnt: NSInteger = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
-    let respCommentsMaxTime: NSInteger = 3 // NOTE: this is used to show comment when respiration. it is max time.
-    let respCommentFreqRange: ClosedRange<NSInteger> = 1...15 // NOTE: freq for show comment when respiration. this value should be 1...X
+    let gladComment = [["ふええ..."], ["ふええ..."], ["シャボン玉〜"]]
+    let respComments = ["暇だな〜", "眠いよ", "ここ暗い"]
+    var respCommentsCnt = -1 // NOTE: this is used to show comment when respiration. it is not 0 coz if it's 0, start show comment
+    let respCommentsMaxTime = 3 // NOTE: this is used to show comment when respiration. it is max time.
+    let respCommentFreqRange = 1...15 // NOTE: freq for show comment when respiration. this value should be 1...X
     
     var fukidashiImage: UIImage?
-    var commentWithFukidashiLabel: UILabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
+    var commentWithFukidashiLabel = UILabel(frame: CGRect(x: 10, y: 35, width: 80, height: 17))
     
     override init() {
         super.init()

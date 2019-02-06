@@ -9,16 +9,16 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var ariel: ArielViewModel = ArielViewModel()
+    var ariel = ArielViewModel()
     
     var movingTimer: Timer?
     var movingSwitchTimer: Timer?
 
     var respirationTimer: Timer?
-    var respirationInterval: Double = 0.5
+    var respirationInterval = 0.5
 
-    var movingInterval: Double = 0.1
-    var movingSwitchInterval: Double = 5.0
+    var movingInterval = 0.1
+    var movingSwitchInterval = 5.0
 
     override func loadView() {
         self.view = ArielView(ariel: ariel)
