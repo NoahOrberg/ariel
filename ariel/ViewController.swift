@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     var ariel: ArielViewModel = ArielViewModel()
-    var fukidashi: FukidashiViewModel = FukidashiViewModel()
     
     var movingTimer: Timer?
     var movingSwitchTimer: Timer?
@@ -22,7 +21,7 @@ class ViewController: UIViewController {
     var movingSwitchInterval: Double = 5.0
 
     override func loadView() {
-        self.view = ArielView(ariel: ariel, fukidashi: fukidashi)
+        self.view = ArielView(ariel: ariel)
     }
 
     override func viewDidLoad() {

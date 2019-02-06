@@ -22,17 +22,15 @@ class ArielView: UIView {
     var arielView: UIImageView!
     
     var ariel: ArielViewModel = ArielViewModel()
-    var fukidashi: FukidashiViewModel = FukidashiViewModel()
 
-    required init(ariel: ArielViewModel, fukidashi: FukidashiViewModel) {
+    required init(ariel: ArielViewModel) {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         self.ariel = ariel
-        self.fukidashi = fukidashi
         
         arielView = UIImageView(image: ariel.respImages[0])
-        fukidashiView = UIImageView(image: fukidashi.fukidashiImage)
+        fukidashiView = UIImageView(image: ariel.fukidashiImage)
 
-        fukidashiView.addSubview(fukidashi.commentWithFukidashiLabel)
+        fukidashiView.addSubview(ariel.commentWithFukidashiLabel)
         self.addSubview(arielView)
         self.addSubview(fukidashiView)
         
@@ -54,7 +52,7 @@ class ArielView: UIView {
         arielView?.center = CGPoint(x:ariel.x, y:ariel.y)
         setupGladTapGesture()
 
-        fukidashiView?.center = CGPoint(x:fukidashi.x(arielX: ariel.x), y:fukidashi.y(arielY: ariel.y))
+        fukidashiView?.center = CGPoint(x:ariel.fukidashiX(arielX: ariel.x), y:ariel.fukidashiY(arielY: ariel.y))
         fukidashiView?.isHidden = true
     }
 
@@ -84,7 +82,7 @@ class ArielView: UIView {
         if (ariel.respCommentsCnt >= 0) {
             self.fukidashiView.isHidden = false
             if (ariel.respCommentsCnt == 0) {
-                fukidashi.commentWithFukidashiLabel.text = ariel.respComments[Int.random(in: 0...ariel.respComments.count-1)] // NOTE: show message is random
+                ariel.commentWithFukidashiLabel.text = ariel.respComments[Int.random(in: 0...ariel.respComments.count-1)] // NOTE: show message is random
             }
             ariel.respCommentsCnt+=1
             if (ariel.respCommentsCnt >= ariel.respCommentsMaxTime) {
@@ -109,7 +107,7 @@ class ArielView: UIView {
             }
             self.arielView.layer.position = CGPoint(x: ariel.x, y: ariel.y)
             // NOTE: with fukidashi
-            self.fukidashiView.center = CGPoint(x:fukidashi.x(arielX: ariel.x), y:fukidashi.y(arielY: ariel.y))
+            self.fukidashiView.center = CGPoint(x:ariel.fukidashiX(arielX: ariel.x), y:ariel.fukidashiY(arielY: ariel.y))
         }
         if (ariel.isMoving == ariel.movingTime || ariel.isMoving == -1) {
             ariel.isMoving = -1
@@ -147,7 +145,7 @@ class ArielView: UIView {
         NSLog("invoked glad()")
         ariel.gladCnt = 0
         ariel.gladMotionCnt = Int.random(in: 0...(ariel.gladImages.count-1))
-        fukidashi.commentWithFukidashiLabel.text = ariel.gladComment[ariel.gladMotionCnt][Int.random(in: 0...(ariel.gladComment[ariel.gladMotionCnt].count)-1)]
+        ariel.commentWithFukidashiLabel.text = ariel.gladComment[ariel.gladMotionCnt][Int.random(in: 0...(ariel.gladComment[ariel.gladMotionCnt].count)-1)]
 
         self.fukidashiView.isHidden = false
     }
